@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="src/styles.css" />
+    <link rel="stylesheet" href="new_src/styles.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -37,8 +37,10 @@
       <div class="heading-section container">
         <div class="row">
           <div class="location-box col-6">
-            <h1 class="city" id="city">JAKARTA</h1>
-            <p class="date-time">Time</p>
+            <h1 class="city" id="city">Jakarta</h1>
+            <p class="date-time">
+              <span id="time"></span>
+            </p>
           </div>
           <form class="search-box col-6" id="submit-form">
             <input
@@ -51,10 +53,14 @@
             <br />
             <div class="lang-fahrenheit-box">
               <p class="my-location sub-search">
-                <a href="">Check My Location!</a>
+                <a href="" class="geolocation">Check My Location!</a>
               </p>
-              <p class="fahrenheit sub-search"><a href="">Change to F°</a></p>
-              <p class="celsius sub-search"><a href="">Change to C°</a></p>
+              <p class="sub-search">
+                <a href="" class="fahrenheit">Change to F°</a>
+              </p>
+              <p class="sub-search">
+                <a class="celsius inactive" href="">Change to C°</a>
+              </p>
             </div>
           </form>
         </div>
@@ -62,22 +68,39 @@
       <!--MIDDLE SECTION-->
       <div class="middle-section container">
         <div class="row">
-          <div class="low-temp-box col-4">
-            <p class="temp-title-low">Low Temp.</p>
-            <h2 class="low temp">
-              <span class="number" id="low-number">24</span
-              ><span class="low-temp-symbol">°C</span>
-            </h2>
+          <div class="temp col-4">
+            <div class="low-temp-box">
+              <p class="temp-title-low">Temperature:</p>
+              <h2 class="low temp">
+                <span class="number" id="low-number">24</span
+                ><span class="low-temp-symbol">°C</span>
+              </h2>
+            </div>
+            <div class="high-temp-box">
+              <p class="temp-title-high">Feels like:</p>
+              <h2 class="high temp">
+                <span class="number" id="high-number">30</span
+                ><span class="high-temp-symbol">°C</span>
+              </h2>
+            </div>
           </div>
           <div class="current-weather-box col-4">
-            <img class="current-weather" src="media/weather/cloud.png" />
+            <img
+              class="current-weather"
+              id="weather-icon"
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
+            />
+            <p id="description">Slight Rain</p>
           </div>
-          <div class="high-temp-box col-4">
-            <p class="temp-title-high">High Temp.</p>
-            <h2 class="high temp">
-              <span class="number" id="high-number">30</span
-              ><span class="high-temp-symbol">°C</span>
-            </h2>
+          <div class="wind col-4">
+            <div class="wind-box">
+              <p class="wind-p">Wind Speed</p>
+              <p><span id="wind">15</span>km/h</p>
+            </div>
+            <div class="humidity-box">
+              <p class="humidity-p">Humidity</p>
+              <p><span id="humidity">85</span>%</p>
+            </div>
           </div>
         </div>
       </div>
@@ -86,38 +109,56 @@
         <div class="future-box row">
           <div class="col-2 day" id="monday">
             <p>Mon</p>
-            <i class="fa-solid fa-cloud-rain day-img"></i>
+            <img
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
+              alt=""
+            />
             <p class="temp-range">24°C - 31°C</p>
             <p></p>
           </div>
           <div class="col-2 day" id="tuesday">
             <p>Tue</p>
-            <i class="fa-solid fa-cloud-bolt day-img"></i>
+            <img
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
+              alt=""
+            />
             <p class="temp-range">24°C - 33°C</p>
             <p></p>
           </div>
           <div class="col-2 day" id="wednesday">
             <p>Wed</p>
-            <i class="fa-solid fa-cloud-rain day-img"></i>
+            <img
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
+              alt=""
+            />
             <p class="temp-range">23°C - 33°C</p>
             <p></p>
           </div>
           <div class="col-2 day" id="thursday">
             <p>Thurs</p>
-            <i class="fa-solid fa-cloud-rain day-img"></i>
+            <img
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
+              alt=""
+            />
             <p class="temp-range">24°C - 33°C</p>
             <p></p>
           </div>
           <div class="col-2 day friday">
             <p>Fri</p>
-            <i class="fa-solid fa-cloud-sun day-img"></i>
+            <img
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
+              alt=""
+            />
             <p class="temp-range">23°C - 32°C</p>
             <p></p>
           </div>
 
           <div class="col-2 day">
             <p>Sat</p>
-            <i class="fa-solid fa-sun day-img"></i>
+            <img
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
+              alt=""
+            />
             <p class="temp-range">24°C - 32°C</p>
             <p></p>
           </div>
@@ -129,7 +170,7 @@
       <p>Coded by Nona Intan(2023)</p>
     </div>
     -->
-    <script src="src/index.js"></script>
+    <script src="new_src/new_index.js"></script>
   </body>
   <footer>
     <a href="https://github.com/wnonna13/Weather" class="git"
