@@ -1,12 +1,3 @@
-/* TO-DO LIST 
-- HEADING: 
-    - Add text in search bar
-    - Change Submit to Search
-    - Move Change to F below
-    - Move 15:00 to below
-- MIDDLE:
-     - Change Temperature to temp? 
-- END:
 
 
 /* GLOBAL CSS */
@@ -118,7 +109,15 @@ video {
   font-weight: 400;
 }
 
+.kmh {
+  line-height: 10px;
+}
+
 /* MIDDLE SECTION */
+
+.middle-section {
+  margin-bottom: 40px;
+}
 
 .temp-title-high,
 .temp-title-low,
@@ -184,20 +183,34 @@ video {
 
 /* END SECTION */
 
-.day {
-  /*border: 2px solid aqua; */
+.weather-forecast-data {
+  display: block;
   text-align: center;
-  padding-bottom: 6%;
-  padding-top: 4%;
-}
-
-.day-img {
-  font-size: 50px;
-}
-
-.temp-range {
-  padding-top: 15px;
   font-size: 15px;
+  margin: 20px 0;
+}
+
+.weather-forecast-temperature-min,
+.weather-forecast-temperature-max {
+  margin: 0 2px;
+}
+
+.weather-forecast-temperature-max {
+  font-weight: bolder;
+}
+
+.weather-forecast-image {
+  width: 70%;
+  display: block;
+  margin: 0 auto;
+}
+
+.new {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ACTIVE CLASSES */
