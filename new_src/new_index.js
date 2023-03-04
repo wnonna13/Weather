@@ -10,6 +10,13 @@
 
 // TO SEARCH WEATHER
 
+function setDay(timestamp) {
+  let currentTime = new Date(timestamp * 1000);
+  let day = currentTime.getDay();
+  let dayArray = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  return (dayStr = dayArray[day]);
+}
+
 function setTime(timestamp) {
   let currentTime = new Date(timestamp * 1000);
   let hours = currentTime.getHours();
@@ -47,6 +54,18 @@ function setTime(timestamp) {
   return `Your time: ${dayStr}, ${monthStr} ${date} at ${hours}:${minutes}`;
 }
 
+function getForecast(coord) {
+  let apiKey = `c8abeb45b43149ca1ote502400f8a1fd`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coord.longitude}&lat=${coord.latitude}&key=${apiKey}&unit=metric`;
+  axios.get(apiUrl).then(getWeeklyForecast);
+}
+
+function getForecastF(coord) {
+  let apiKey = `c8abeb45b43149ca1ote502400f8a1fd`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coord.longitude}&lat=${coord.latitude}&key=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(getWeeklyForecastF);
+}
+
 function showWeather(response) {
   let time = document.querySelector("#time");
   time.innerHTML = setTime(response.data.time);
@@ -78,6 +97,11 @@ function showWeather(response) {
   let symbol2 = document.querySelector(".high-temp-symbol");
   symbol2.innerHTML = "°C";
 
+  let windSymbol = document.querySelector("#wind-symbol");
+  windSymbol.innerHTML = " km/h";
+
+  getForecast(response.data.coordinates);
+
   let fahrenheitClass = document.querySelector(".fahrenheit");
   fahrenheitClass.classList.remove("inactive");
   let celsiusClass = document.querySelector(".celsius");
@@ -89,6 +113,13 @@ function showCity(event) {
   let city = document.querySelector("#text-input");
   let api_key = "0f44341abt30217bea1ac1oefa56b8b0";
   let api_url = `https://api.shecodes.io/weather/v1/current?query=${city.value}&key=${api_key}`;
+  axios.get(api_url).then(showWeather);
+}
+
+function showCityTokyo() {
+  let city = "Tokyo";
+  let api_key = "0f44341abt30217bea1ac1oefa56b8b0";
+  let api_url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${api_key}`;
   axios.get(api_url).then(showWeather);
 }
 
@@ -109,9 +140,14 @@ function showWeatherF(response) {
 
   let symbol2 = document.querySelector(".high-temp-symbol");
   symbol2.innerHTML = "°F";
+
+  let windSymbol = document.querySelector("#wind-symbol");
+  windSymbol.innerHTML = " mph";
+
+  getForecastF(response.data.coordinates);
 }
 
-function showCityF(event) { 
+function showCityF(event) {
   event.preventDefault();
   let city = document.querySelector("#text-input");
   let api_key = "0f44341abt30217bea1ac1oefa56b8b0";
@@ -142,8 +178,13 @@ function showWeatherOnlyC(response) {
   let symbol2 = document.querySelector(".high-temp-symbol");
   symbol2.innerHTML = "°C";
 
+  let windSymbol = document.querySelector("#wind-symbol");
+  windSymbol.innerHTML = " km/h";
+
   let h1 = document.querySelector("h1");
   h1.innerHTML = response.data.city;
+
+  getForecast(response.data.coordinates);
 }
 
 function showCityC(event) {
@@ -188,6 +229,79 @@ function searchGeoLocation(event) {
   alertLatLon();
   navigator.geolocation.getCurrentPosition(getWeatherLatLon);
 }
+//
+//
+// GET 6-DAY WEEK FORECAST //
+
+function getWeeklyForecast(response) {
+  let forecast = response.data.daily;
+
+  console.log(response);
+  let weekForecast = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row new">`;
+  forecast.forEach((forecastDay, index) => {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        ` <div class="col-2 weather-forecast-data">${setDay(forecastDay.time)}
+          <img
+            src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+              forecastDay.condition.icon
+            }.png"
+            alt=""
+            class="weather-forecast-image"
+          />
+          <div class="weather-forecast-temperatures">
+              <span class="weather-forecast-temperature-max">${Math.round(
+                forecastDay.temperature.maximum
+              )}°C -</span
+              ><span class="weather-forecast-temperature-min">${Math.round(
+                forecastDay.temperature.minimum
+              )}°C</span>
+            </div>
+        </div>`;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  weekForecast.innerHTML = forecastHTML;
+}
+
+function getWeeklyForecastF(response) {
+  let forecast = response.data.daily;
+
+  console.log(response);
+  let weekForecast = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row new">`;
+  forecast.forEach((forecastDay, index) => {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        ` <div class="col-2 weather-forecast-data">${setDay(forecastDay.time)}
+          <img
+            src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+              forecastDay.condition.icon
+            }.png"
+            alt=""
+            class="weather-forecast-image"
+          />
+          <div class="weather-forecast-temperatures">
+              <span class="weather-forecast-temperature-max">${Math.round(
+                forecastDay.temperature.maximum
+              )}°F -</span
+              ><span class="weather-forecast-temperature-min">${Math.round(
+                forecastDay.temperature.minimum
+              )}°F</span>
+            </div>
+        </div>`;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  weekForecast.innerHTML = forecastHTML;
+}
+
+// SHOW TOKYO DEFAULT
+
+showCityTokyo();
 
 //EVENT LISTENERS
 
@@ -203,6 +317,4 @@ clickC.addEventListener("click", showCityC);
 let clickGeolocation = document.querySelector(".geolocation");
 clickGeolocation.addEventListener("click", searchGeoLocation);
 
-// VARIABLE DECLARATIONS
-//let api_key = "0f44341abt30217bea1ac1oefa56b8b0";
-//let api_url = `https://api.shecodes.io/weather/v1/current?query=${city.value}&key=${api_key}`;
+//
