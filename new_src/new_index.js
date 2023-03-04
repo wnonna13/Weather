@@ -1,12 +1,4 @@
-// API WEATHER SEARCH BAR
 
-//function formatDate(timestamp) {
-//  let date = new Date(timestamp * 1000);
-//  let hours = date.getHours();
-//  let minutes = date.getMinutes();
-//  let day = date.getDay();
-//  return `${day}, ${date}, ${hours}:${minutes}`;
-//}
 
 // TO SEARCH WEATHER
 
@@ -20,7 +12,25 @@ function setDay(timestamp) {
 function setTime(timestamp) {
   let currentTime = new Date(timestamp * 1000);
   let hours = currentTime.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  } else {
+    hours = `${hours}`;
+  }
   let minutes = currentTime.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  } else {
+    minutes = `${minutes}`;
+  }
+
+  let seconds = currentTime.getSeconds();
+  if (seconds < 10) {
+    seconds = `0${seconds}`;
+  } else {
+    seconds = `${seconds}`;
+  }
+
   let day = currentTime.getDay();
   let dayArray = [
     "Sunday",
@@ -51,7 +61,18 @@ function setTime(timestamp) {
   let monthStr = monthArray[month];
 
   let date = currentTime.getDate();
-  return `Your time: ${dayStr}, ${monthStr} ${date} at ${hours}:${minutes}`;
+  if (date === 1 || date === 21 || date === 31) {
+    date = `${date}st`;
+  } else if (date === 2 || date === 22) {
+    date = `${date}nd`;
+  } else if (date === 3 || date === 23) {
+    date = `${date}rd`;
+  } else {
+    date = `${date}th`;
+  }
+
+  let year = currentTime.getFullYear();
+  return `${dayStr}, ${monthStr} ${date} ${year} at ${hours}:${minutes}:${seconds}`;
 }
 
 function getForecast(coord) {
