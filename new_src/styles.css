@@ -109,6 +109,10 @@ video {
   font-weight: 400;
 }
 
+.your-time {
+  font-weight: bold;
+}
+
 .kmh {
   line-height: 10px;
 }
