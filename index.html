@@ -37,7 +37,7 @@
       <div class="heading-section container">
         <div class="row">
           <div class="location-box col-6">
-            <h1 class="city" id="city">Jakarta</h1>
+            <h1 class="city" id="city">Tokyo</h1>
             <p class="date-time">
               <span id="time"></span>
             </p>
@@ -56,10 +56,10 @@
                 <a href="" class="geolocation">Check My Location!</a>
               </p>
               <p class="sub-search">
-                <a href="" class="fahrenheit">Change to F°</a>
+                <a href="" class="fahrenheit">Change to F° · mph</a>
               </p>
               <p class="sub-search">
-                <a class="celsius inactive" href="">Change to C°</a>
+                <a class="celsius inactive kmh" href="">Change to C° · km/h</a>
               </p>
             </div>
           </form>
@@ -72,15 +72,15 @@
             <div class="low-temp-box">
               <p class="temp-title-low">Temperature:</p>
               <h2 class="low temp">
-                <span class="number" id="low-number">24</span
-                ><span class="low-temp-symbol">°C</span>
+                <span class="number" id="low-number">__</span
+                ><span class="low-temp-symbol">°_</span>
               </h2>
             </div>
             <div class="high-temp-box">
               <p class="temp-title-high">Feels like:</p>
               <h2 class="high temp">
-                <span class="number" id="high-number">30</span
-                ><span class="high-temp-symbol">°C</span>
+                <span class="number" id="high-number">__</span
+                ><span class="high-temp-symbol">°_</span>
               </h2>
             </div>
           </div>
@@ -95,72 +95,89 @@
           <div class="wind col-4">
             <div class="wind-box">
               <p class="wind-p">Wind Speed</p>
-              <p><span id="wind">15</span>km/h</p>
+              <p><span id="wind">__</span><span id="wind-symbol">__</span></p>
             </div>
             <div class="humidity-box">
               <p class="humidity-p">Humidity</p>
-              <p><span id="humidity">85</span>%</p>
+              <p><span id="humidity">__</span>%</p>
             </div>
           </div>
         </div>
       </div>
       <!--END SECTION-->
-      <div class="end-section container">
-        <div class="future-box row">
-          <div class="col-2 day" id="monday">
-            <p>Mon</p>
+      <div class="weather-forecast" id="forecast">
+        <div class="row">
+          <div class="col-2 weather-forecast-data">
+            ___
             <img
               src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
               alt=""
+              class="weather-forecast-image"
             />
-            <p class="temp-range">24°C - 31°C</p>
-            <p></p>
+            <div class="weather-forecast-temperatures">
+              <span class="weather-forecast-temperature-max">__°_ -</span
+              ><span class="weather-forecast-temperature-min">__°_</span>
+            </div>
           </div>
-          <div class="col-2 day" id="tuesday">
-            <p>Tue</p>
+          <div class="col-2 weather-forecast-data">
+            ___
             <img
               src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
               alt=""
+              class="weather-forecast-image"
             />
-            <p class="temp-range">24°C - 33°C</p>
-            <p></p>
+            <div class="weather-forecast-temperatures">
+              <span class="weather-forecast-temperature-max">__°_ -</span
+              ><span class="weather-forecast-temperature-min">__°_</span>
+            </div>
           </div>
-          <div class="col-2 day" id="wednesday">
-            <p>Wed</p>
+          <div class="col-2 weather-forecast-data">
+            ___
             <img
               src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
               alt=""
+              class="weather-forecast-image"
             />
-            <p class="temp-range">23°C - 33°C</p>
-            <p></p>
+            <div class="weather-forecast-temperatures">
+              <span class="weather-forecast-temperature-max">__°_ -</span
+              ><span class="weather-forecast-temperature-min">__°_</span>
+            </div>
           </div>
-          <div class="col-2 day" id="thursday">
-            <p>Thurs</p>
+          <div class="col-2 weather-forecast-data">
+            ___
             <img
               src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
               alt=""
+              class="weather-forecast-image"
             />
-            <p class="temp-range">24°C - 33°C</p>
-            <p></p>
+            <div class="weather-forecast-temperatures">
+              <span class="weather-forecast-temperature-max">__°_ -</span
+              ><span class="weather-forecast-temperature-min">__°_</span>
+            </div>
           </div>
-          <div class="col-2 day friday">
-            <p>Fri</p>
+          <div class="col-2 weather-forecast-data">
+            ___
             <img
               src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
               alt=""
+              class="weather-forecast-image"
             />
-            <p class="temp-range">23°C - 32°C</p>
-            <p></p>
+            <div class="weather-forecast-temperatures">
+              <span class="weather-forecast-temperature-max">__°_ -</span
+              ><span class="weather-forecast-temperature-min">__°_</span>
+            </div>
           </div>
-
-          <div class="col-2 day">
-            <p>Sat</p>
+          <div class="col-2 weather-forecast-data">
+            ___
             <img
               src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
               alt=""
+              class="weather-forecast-image"
             />
-            <p class="temp-range">24°C - 32°C</p>
-            <p></p>
+            <div class="weather-forecast-temperatures">
+              <span class="weather-forecast-temperature-max">__°_ -</span
+              ><span class="weather-forecast-temperature-min">__°-</span>
+            </div>
           </div>
         </div>
       </div>
